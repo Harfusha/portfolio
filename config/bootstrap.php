@@ -84,8 +84,8 @@ require CAKE . 'functions.php';
 try {
     Configure::config('default', new PhpConfig());
     Configure::load('app', 'default', false);
-} catch (\Exception $e) {
-    exit($e->getMessage() . "\n");
+} catch (\Exception $exception) {
+    exit($exception->getMessage() . "\n");
 }
 
 /*
@@ -162,11 +162,14 @@ if (!$fullBaseUrl) {
     if (isset($httpHost)) {
         $fullBaseUrl = 'http' . $s . '://' . $httpHost;
     }
+
     unset($httpHost, $s);
 }
+
 if ($fullBaseUrl) {
     Router::fullBaseUrl($fullBaseUrl);
 }
+
 unset($fullBaseUrl);
 
 Cache::setConfig(Configure::consume('Cache'));
@@ -175,10 +178,6 @@ TransportFactory::setConfig(Configure::consume('EmailTransport'));
 Mailer::setConfig(Configure::consume('Email'));
 Log::setConfig(Configure::consume('Log'));
 Security::setSalt(Configure::consume('Security.salt'));
-
-Configure::write('DebugKit.forceEnable', function() {
-    return $_SERVER['REMOTE_ADDR'] === '192.168.2.182';
-});
 
 /*
  * You can enable default locale format parsing by adding calls

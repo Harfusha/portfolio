@@ -51,7 +51,6 @@ class Installer
      *
      * @param \Composer\Script\Event $event The composer event object.
      * @throws \Exception Exception raised by validator.
-     * @return void
      */
     public static function postInstall(Event $event): void
     {
@@ -75,7 +74,6 @@ class Installer
      *
      * @param string $dir The application's root directory.
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
-     * @return void
      */
     public static function createAppLocalConfig(string $dir, IOInterface $io): void
     {
@@ -92,7 +90,6 @@ class Installer
      *
      * @param string $dir The application's root directory.
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
-     * @return void
      */
     public static function createWritableDirectories(string $dir, IOInterface $io): void
     {
@@ -112,16 +109,16 @@ class Installer
      *
      * @param string $dir The application's root directory.
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
-     * @return void
      */
     public static function setFolderPermissions(string $dir, IOInterface $io): void
     {
         // ask if the permissions should be changed
         if ($io->isInteractive()) {
-            $validator = function (string $arg): string {
+            $validator = static function (string $arg) : string {
                 if (in_array($arg, ['Y', 'y', 'N', 'n'])) {
                     return $arg;
                 }
+                
                 throw new Exception('This is not a valid answer. Please choose Y or n.');
             };
             $setFolderPermissions = $io->askAndValidate(
@@ -137,7 +134,7 @@ class Installer
         }
 
         // Change the permissions on a path and output the results.
-        $changePerms = function (string $path) use ($io): void {
+        $changePerms = static function (string $path) use ($io): void {
             $currentPerms = fileperms($path) & 0777;
             $worldWritable = $currentPerms | 0007;
             if ($worldWritable == $currentPerms) {
@@ -152,7 +149,7 @@ class Installer
             }
         };
 
-        $walker = function (string $dir) use (&$walker, $changePerms): void {
+        $walker = static function (string $dir) use (&$walker, $changePerms) : void {
             /** @phpstan-ignore-next-line */
             $files = array_diff(scandir($dir), ['.', '..']);
             foreach ($files as $file) {
@@ -177,7 +174,6 @@ class Installer
      *
      * @param string $dir The application's root directory.
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
-     * @return void
      */
     public static function setSecuritySalt(string $dir, IOInterface $io): void
     {
@@ -192,7 +188,6 @@ class Installer
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @param string $newKey key to set in the file
      * @param string $file A path to a file relative to the application's root
-     * @return void
      */
     public static function setSecuritySaltInFile(string $dir, IOInterface $io, string $newKey, string $file): void
     {
@@ -214,6 +209,7 @@ class Installer
 
             return;
         }
+
         $io->write('Unable to update Security.salt value.');
     }
 
@@ -224,7 +220,6 @@ class Installer
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @param string $appName app name to set in the file
      * @param string $file A path to a file relative to the application's root
-     * @return void
      */
     public static function setAppNameInFile(string $dir, IOInterface $io, string $appName, string $file): void
     {
@@ -245,6 +240,7 @@ class Installer
 
             return;
         }
+
         $io->write('Unable to update __APP_NAME__ value.');
     }
 }

@@ -23,11 +23,13 @@ if (Configure::read('debug')) :
         <strong>SQL Query: </strong>
         <?= h($error->queryString) ?>
     </p>
-<?php endif; ?>
+<?php endif;
+ ?>
 <?php if (!empty($error->params)) : ?>
     <strong>SQL Query Params: </strong>
     <?php Debugger::dump($error->params) ?>
-<?php endif; ?>
+<?php endif;
+ ?>
 <?php if ($error instanceof Error) : ?>
     <?php $file = $error->getFile() ?>
     <?php $line = $error->getLine() ?>

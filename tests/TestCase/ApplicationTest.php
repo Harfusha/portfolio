@@ -40,9 +40,10 @@ class ApplicationTest extends TestCase
     public function testBootstrap()
     {
         Configure::write('debug', false);
-        $app = new Application(dirname(__DIR__, 2) . '/config');
-        $app->bootstrap();
-        $plugins = $app->getPlugins();
+        $application = new Application(dirname(__DIR__, 2) . '/config');
+        $application->bootstrap();
+
+        $plugins = $application->getPlugins();
 
         $this->assertTrue($plugins->has('Bake'), 'plugins has Bake?');
         $this->assertFalse($plugins->has('DebugKit'), 'plugins has DebugKit?');
@@ -57,9 +58,10 @@ class ApplicationTest extends TestCase
     public function testBootstrapInDebug()
     {
         Configure::write('debug', true);
-        $app = new Application(dirname(__DIR__, 2) . '/config');
-        $app->bootstrap();
-        $plugins = $app->getPlugins();
+        $application = new Application(dirname(__DIR__, 2) . '/config');
+        $application->bootstrap();
+
+        $plugins = $application->getPlugins();
 
         $this->assertTrue($plugins->has('DebugKit'), 'plugins has DebugKit?');
     }
@@ -71,10 +73,10 @@ class ApplicationTest extends TestCase
      */
     public function testMiddleware()
     {
-        $app = new Application(dirname(__DIR__, 2) . '/config');
+        $application = new Application(dirname(__DIR__, 2) . '/config');
         $middleware = new MiddlewareQueue();
 
-        $middleware = $app->middleware($middleware);
+        $middleware = $application->middleware($middleware);
 
         $this->assertInstanceOf(ErrorHandlerMiddleware::class, $middleware->current());
         $middleware->seek(1);

@@ -34,9 +34,8 @@ class AppController extends Controller
      * Use this method to add common initialization code like loading components.
      *
      * e.g. `$this->loadComponent('FormProtection');`
-     *
-     * @return void
      */
+    #[\Override]
     public function initialize(): void
     {
         parent::initialize();

@@ -40,9 +40,8 @@ class Application extends BaseApplication
 {
     /**
      * Load all the application configuration and bootstrap logic.
-     *
-     * @return void
      */
+    #[\Override]
     public function bootstrap(): void
     {
         // Call parent to load bootstrap from files.
@@ -62,6 +61,7 @@ class Application extends BaseApplication
      * @param \Cake\Http\MiddlewareQueue $middlewareQueue The middleware queue to setup.
      * @return \Cake\Http\MiddlewareQueue The updated middleware queue.
      */
+    #[\Override]
     public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue
     {
         $middlewareQueue
@@ -98,9 +98,9 @@ class Application extends BaseApplication
      * Register application container services.
      *
      * @param \Cake\Core\ContainerInterface $container The Container to update.
-     * @return void
      * @link https://book.cakephp.org/4/en/development/dependency-injection.html#dependency-injection
      */
+    #[\Override]
     public function services(ContainerInterface $container): void
     {
     }

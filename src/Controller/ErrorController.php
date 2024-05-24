@@ -27,9 +27,8 @@ class ErrorController extends AppController
 {
     /**
      * Initialization hook method.
-     *
-     * @return void
      */
+    #[\Override]
     public function initialize(): void
     {
         // Only add parent::initialize() if you are confident your appcontroller is safe.
@@ -41,6 +40,7 @@ class ErrorController extends AppController
      * @param \Cake\Event\EventInterface<\Cake\Controller\Controller> $event Event.
      * @return \Cake\Http\Response|null|void
      */
+    #[\Override]
     public function beforeFilter(EventInterface $event)
     {
     }
@@ -51,6 +51,7 @@ class ErrorController extends AppController
      * @param \Cake\Event\EventInterface<\Cake\Controller\Controller> $event Event.
      * @return \Cake\Http\Response|null|void
      */
+    #[\Override]
     public function beforeRender(EventInterface $event)
     {
         parent::beforeRender($event);
@@ -64,6 +65,7 @@ class ErrorController extends AppController
      * @param \Cake\Event\EventInterface<\Cake\Controller\Controller> $event Event.
      * @return \Cake\Http\Response|null|void
      */
+    #[\Override]
     public function afterFilter(EventInterface $event)
     {
     }

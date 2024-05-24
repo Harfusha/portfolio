@@ -12,10 +12,6 @@ parameters:
     bootstrapFiles:
         - config/bootstrap.php
 
-    paths:
-        - src/
-        - templates/
-
     treatPhpDocTypesAsCertain: true
     polluteScopeWithLoopInitialAssignments: false
     polluteScopeWithAlwaysIterableForeach: false

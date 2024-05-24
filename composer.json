@@ -6,12 +6,14 @@
     "license": "MIT",
     "require": {
         "php": ">=8.3",
+        "cakedc/cakephp-phpstan": "3.*",
+        "cakephp/authentication": "3.*",
+        "cakephp/authorization": "3.*",
         "cakephp/cakephp": "5.*",
         "cakephp/migrations": "4.*",
         "cakephp/plugin-installer": "2.*",
         "friendsofcake/bootstrap-ui": "5.*",
-        "cakephp/authentication": "3.*",
-        "cakephp/authorization": "3.*"
+        "phpstan/phpstan-deprecation-rules": "1.*"
     },
     "require-dev": {
         "cakephp/bake": "3.*",

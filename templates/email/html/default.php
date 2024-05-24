@@ -14,8 +14,7 @@
  * @var \Cake\View\View $this
  * @var string $content
  */
-
-$lines = explode("\n", $content);
+$lines = explode("\n", (string) $content);
 
 foreach ($lines as $line) :
     echo '<p> ' . $line . "</p>\n";

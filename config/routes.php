@@ -29,7 +29,7 @@ use Cake\Routing\RouteBuilder;
   * So you can use  `$this` to reference the application class instance
   * if required.
  */
-return function (RouteBuilder $routes): void {
+return static function (RouteBuilder $routeBuilder) : void {
     /*
      * The default class to use for all routes
      *
@@ -47,12 +47,10 @@ return function (RouteBuilder $routes): void {
      * inconsistently cased URLs when used with `{plugin}`, `{controller}` and
      * `{action}` markers.
      */
-    $routes->setRouteClass(DashedRoute::class);
-
-    $routes->scope('/', function (RouteBuilder $builder): void {
-        $builder->fallbacks();
+    $routeBuilder->setRouteClass(DashedRoute::class);
+    $routeBuilder->scope('/', static function (RouteBuilder $routeBuilder) : void {
+        $routeBuilder->fallbacks();
     });
-
     /*
      * If you need a different set of middleware or none at all,
      * open new scope and define routes there.
