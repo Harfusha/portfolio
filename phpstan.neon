@@ -1,7 +1,43 @@
 parameters:
     level: 9
-    treatPhpDocTypesAsCertain: false
-    checkGenericClassInNonGenericObjectType: false
+
+    paths:
+        - src
+        - templates
+
+    scanDirectories:
+        - config
+        - vendor
+
+    bootstrapFiles:
+        - config/bootstrap.php
+
     paths:
         - src/
         - templates/
+
+    treatPhpDocTypesAsCertain: true
+    polluteScopeWithLoopInitialAssignments: false
+    polluteScopeWithAlwaysIterableForeach: false
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true
+    checkExplicitMixedMissingReturn: true
+    checkImplicitMixed: true
+    checkAlwaysTrueCheckTypeFunctionCall: true
+    checkAlwaysTrueInstanceof: true
+    checkAlwaysTrueStrictComparison: true
+    reportMaybesInMethodSignatures: true
+    reportMaybesInPropertyPhpDocTypes: true
+    reportStaticMethodSignatures: true
+    checkUninitializedProperties: true
+    checkBenevolentUnionTypes: true
+    reportAlwaysTrueInLastCondition: true
+
+    exceptions:
+        check:
+            missingCheckedExceptionInThrows: true
+            tooWideThrowType: true
+
+includes:
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+    - vendor/cakedc/cakephp-phpstan/extension.neon
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon

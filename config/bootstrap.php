@@ -176,20 +176,8 @@ Mailer::setConfig(Configure::consume('Email'));
 Log::setConfig(Configure::consume('Log'));
 Security::setSalt(Configure::consume('Security.salt'));
 
-/*
- * Setup detectors for mobile and tablet.
- * If you don't use these checks you can safely remove this code
- * and the mobiledetect package from composer.json.
- */
-ServerRequest::addDetector('mobile', function ($request) {
-    $detector = new \Detection\MobileDetect();
-
-    return $detector->isMobile();
-});
-ServerRequest::addDetector('tablet', function ($request) {
-    $detector = new \Detection\MobileDetect();
-
-    return $detector->isTablet();
+Configure::write('DebugKit.forceEnable', function() {
+    return $_SERVER['REMOTE_ADDR'] === '192.168.2.182';
 });
 
 /*

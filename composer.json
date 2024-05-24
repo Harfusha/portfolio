@@ -1,25 +1,27 @@
 {
-    "name": "cakephp/app",
-    "description": "CakePHP skeleton app",
-    "homepage": "https://cakephp.org",
+    "name": "halfar/portfolio",
+    "description": "Adam Halfar portfolio",
+    "homepage": "https://adam-halfar.cz",
     "type": "project",
     "license": "MIT",
     "require": {
-        "php": ">=8.1",
-        "cakephp/cakephp": "^5.0.1",
-        "cakephp/migrations": "^4.0.0",
-        "cakephp/plugin-installer": "^2.0",
-        "mobiledetect/mobiledetectlib": "^4.8"
+        "php": ">=8.3",
+        "cakephp/cakephp": "5.*",
+        "cakephp/migrations": "4.*",
+        "cakephp/plugin-installer": "2.*",
+        "friendsofcake/bootstrap-ui": "5.*",
+        "cakephp/authentication": "3.*",
+        "cakephp/authorization": "3.*"
     },
     "require-dev": {
-        "cakephp/bake": "^3.0.0",
-        "cakephp/cakephp-codesniffer": "^5.0",
-        "cakephp/debug_kit": "^5.0.0",
-        "dereuromark/cakephp-ide-helper": "^2.2",
-        "josegonzalez/dotenv": "^4.0",
-        "phpstan/phpstan": "^1.11",
-        "phpunit/phpunit": "^10.1.0",
-        "rector/rector": "^1.1"
+        "cakephp/bake": "3.*",
+        "cakephp/cakephp-codesniffer": "5.*",
+        "cakephp/debug_kit": "5.*",
+        "dereuromark/cakephp-ide-helper": "2.*",
+        "josegonzalez/dotenv": "4.*",
+        "phpstan/phpstan": "1.*",
+        "phpunit/phpunit": "10.*",
+        "rector/rector": "1.*"
     },
     "suggest": {
         "markstory/asset_compress": "An asset compression plugin which provides file concatenation and a flexible filter system for preprocessing and minification.",
