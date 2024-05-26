@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -14,6 +15,7 @@ declare(strict_types=1);
  * @since     3.3.0
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App;
 
 use Cake\Core\Configure;
@@ -36,14 +38,12 @@ use Cake\Routing\Middleware\RoutingMiddleware;
  *
  * @extends \Cake\Http\BaseApplication<\App\Application>
  */
-class Application extends BaseApplication
-{
+class Application extends BaseApplication {
     /**
      * Load all the application configuration and bootstrap logic.
      */
     #[\Override]
-    public function bootstrap(): void
-    {
+    public function bootstrap(): void {
         // Call parent to load bootstrap from files.
         parent::bootstrap();
 
@@ -62,8 +62,7 @@ class Application extends BaseApplication
      * @return \Cake\Http\MiddlewareQueue The updated middleware queue.
      */
     #[\Override]
-    public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue
-    {
+    public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue {
         $middlewareQueue
             // Catch any exceptions in the lower layers,
             // and make an error page/response
@@ -101,7 +100,6 @@ class Application extends BaseApplication
      * @link https://book.cakephp.org/4/en/development/dependency-injection.html#dependency-injection
      */
     #[\Override]
-    public function services(ContainerInterface $container): void
-    {
+    public function services(ContainerInterface $container): void {
     }
 }

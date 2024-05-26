@@ -15,4 +15,5 @@ return [
     'IdeHelper' => [],
     'Authorization' => [],
     'Authentication' => [],
+    'BootstrapUI' => [],
 ];

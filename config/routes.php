@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Routes configuration.
  *
@@ -29,7 +30,8 @@ use Cake\Routing\RouteBuilder;
   * So you can use  `$this` to reference the application class instance
   * if required.
  */
-return static function (RouteBuilder $routeBuilder) : void {
+
+return static function (RouteBuilder $routeBuilder): void {
     /*
      * The default class to use for all routes
      *
@@ -48,7 +50,7 @@ return static function (RouteBuilder $routeBuilder) : void {
      * `{action}` markers.
      */
     $routeBuilder->setRouteClass(DashedRoute::class);
-    $routeBuilder->scope('/', static function (RouteBuilder $routeBuilder) : void {
+    $routeBuilder->scope('/', static function (RouteBuilder $routeBuilder): void {
         $routeBuilder->fallbacks();
     });
     /*

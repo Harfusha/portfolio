@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -14,6 +15,7 @@ declare(strict_types=1);
  * @since         3.3.4
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Event\EventInterface;
@@ -23,14 +25,12 @@ use Cake\Event\EventInterface;
  *
  * Controller used by ExceptionRenderer to render error responses.
  */
-class ErrorController extends AppController
-{
+class ErrorController extends AppController {
     /**
      * Initialization hook method.
      */
     #[\Override]
-    public function initialize(): void
-    {
+    public function initialize(): void {
         // Only add parent::initialize() if you are confident your appcontroller is safe.
     }
 
@@ -41,8 +41,7 @@ class ErrorController extends AppController
      * @return \Cake\Http\Response|null|void
      */
     #[\Override]
-    public function beforeFilter(EventInterface $event)
-    {
+    public function beforeFilter(EventInterface $event) {
     }
 
     /**
@@ -52,8 +51,7 @@ class ErrorController extends AppController
      * @return \Cake\Http\Response|null|void
      */
     #[\Override]
-    public function beforeRender(EventInterface $event)
-    {
+    public function beforeRender(EventInterface $event) {
         parent::beforeRender($event);
 
         $this->viewBuilder()->setTemplatePath('Error');
@@ -66,7 +64,6 @@ class ErrorController extends AppController
      * @return \Cake\Http\Response|null|void
      */
     #[\Override]
-    public function afterFilter(EventInterface $event)
-    {
+    public function afterFilter(EventInterface $event) {
     }
 }

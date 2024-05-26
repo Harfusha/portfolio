@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -14,6 +15,7 @@ declare(strict_types=1);
  * @since     3.0.0
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Console;
 
 if (!defined('STDIN')) {
@@ -30,8 +32,7 @@ use Exception;
  * Provides installation hooks for when this application is installed through
  * composer. Customize this class to suit your needs.
  */
-class Installer
-{
+class Installer {
     /**
      * An array of directories to be made writable
      */
@@ -52,8 +53,7 @@ class Installer
      * @param \Composer\Script\Event $event The composer event object.
      * @throws \Exception Exception raised by validator.
      */
-    public static function postInstall(Event $event): void
-    {
+    public static function postInstall(Event $event): void {
         $io = $event->getIO();
 
         $rootDir = dirname(__DIR__, 2);
@@ -75,8 +75,7 @@ class Installer
      * @param string $dir The application's root directory.
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      */
-    public static function createAppLocalConfig(string $dir, IOInterface $io): void
-    {
+    public static function createAppLocalConfig(string $dir, IOInterface $io): void {
         $appLocalConfig = $dir . '/config/app_local.php';
         $appLocalConfigTemplate = $dir . '/config/app_local.example.php';
         if (!file_exists($appLocalConfig)) {
@@ -91,8 +90,7 @@ class Installer
      * @param string $dir The application's root directory.
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      */
-    public static function createWritableDirectories(string $dir, IOInterface $io): void
-    {
+    public static function createWritableDirectories(string $dir, IOInterface $io): void {
         foreach (static::WRITABLE_DIRS as $path) {
             $path = $dir . '/' . $path;
             if (!file_exists($path)) {
@@ -110,15 +108,14 @@ class Installer
      * @param string $dir The application's root directory.
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      */
-    public static function setFolderPermissions(string $dir, IOInterface $io): void
-    {
+    public static function setFolderPermissions(string $dir, IOInterface $io): void {
         // ask if the permissions should be changed
         if ($io->isInteractive()) {
-            $validator = static function (string $arg) : string {
+            $validator = static function (string $arg): string {
                 if (in_array($arg, ['Y', 'y', 'N', 'n'])) {
                     return $arg;
                 }
-                
+
                 throw new Exception('This is not a valid answer. Please choose Y or n.');
             };
             $setFolderPermissions = $io->askAndValidate(
@@ -149,7 +146,7 @@ class Installer
             }
         };
 
-        $walker = static function (string $dir) use (&$walker, $changePerms) : void {
+        $walker = static function (string $dir) use (&$walker, $changePerms): void {
             /** @phpstan-ignore-next-line */
             $files = array_diff(scandir($dir), ['.', '..']);
             foreach ($files as $file) {
@@ -175,8 +172,7 @@ class Installer
      * @param string $dir The application's root directory.
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      */
-    public static function setSecuritySalt(string $dir, IOInterface $io): void
-    {
+    public static function setSecuritySalt(string $dir, IOInterface $io): void {
         $newKey = hash('sha256', Security::randomBytes(64));
         static::setSecuritySaltInFile($dir, $io, $newKey, 'app_local.php');
     }
@@ -189,8 +185,7 @@ class Installer
      * @param string $newKey key to set in the file
      * @param string $file A path to a file relative to the application's root
      */
-    public static function setSecuritySaltInFile(string $dir, IOInterface $io, string $newKey, string $file): void
-    {
+    public static function setSecuritySaltInFile(string $dir, IOInterface $io, string $newKey, string $file): void {
         $config = $dir . '/config/' . $file;
         $content = file_get_contents($config);
 
@@ -221,8 +216,7 @@ class Installer
      * @param string $appName app name to set in the file
      * @param string $file A path to a file relative to the application's root
      */
-    public static function setAppNameInFile(string $dir, IOInterface $io, string $appName, string $file): void
-    {
+    public static function setAppNameInFile(string $dir, IOInterface $io, string $appName, string $file): void {
         $config = $dir . '/config/' . $file;
         $content = file_get_contents($config);
         /** @phpstan-ignore-next-line */
