@@ -51,6 +51,8 @@ return static function (RouteBuilder $routeBuilder): void {
      */
     $routeBuilder->setRouteClass(DashedRoute::class);
     $routeBuilder->scope('/', static function (RouteBuilder $routeBuilder): void {
+        $routeBuilder->connect('/', 'Pages::welcome');
+        
         $routeBuilder->fallbacks();
     });
     /*
