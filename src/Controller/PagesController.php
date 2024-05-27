@@ -13,4 +13,8 @@ class PagesController extends AppController {
     public function welcome(): null {
         return null;
     }
+
+    public function shifts(): null {
+        return null;
+    }
 }

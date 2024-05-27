@@ -1,59 +1,71 @@
 <?php
 
 /**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
  * @var \App\View\AppView $this
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+ $controller = $this->getRequest()->getParam('controller');
+ $action = $this->getRequest()->getParam('action');
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="cs">
 
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
-    </title>
+    <title><?= $this->fetch('title') ?></title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'fonts', 'cake']) ?>
+    <?= $this->Html->css([
+        '/plugins/bootstrap/css/bootstrap.min',
+        '/plugins/font-awesome/css/fontawesome.min',
+        '/plugins/font-awesome/css/solid.min',
+        'custom.css',
+    ]); ?>
 
     <?= $this->fetch('meta') ?>
-    <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
 </head>
 
 <body>
-    <nav class="top-nav">
-        <div class="top-nav-title">
-            <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>
-        </div>
-        <div class="top-nav-links">
-            <a target="_blank" rel="noopener" href="https://book.cakephp.org/5/">Documentation</a>
-            <a target="_blank" rel="noopener" href="https://api.cakephp.org/">API</a>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link<?= $controller === 'Pages' && $action === 'welcome' ? ' active' : '' ?>" href="<?= $this->Url->build(['controller' => 'Pages', 'action' => 'welcome']); ?>">Domů</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link<?= $controller === 'Pages' && $action === 'shifts' ? ' active' : '' ?>" href="<?= $this->Url->build(['controller' => 'Pages', 'action' => 'shifts']); ?>">Rozdělení služeb</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
-    <main class="main">
-        <div class="container">
-            <?= $this->Flash->render() ?>
-            <?= $this->fetch('content') ?>
+
+    <main class="container">
+        <div class="bg-light p-5 rounded">
+            <div class="row">
+                <div class="col-12">
+                    <?= $this->Flash->render() ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <?= $this->fetch('content') ?>
+                </div>
+            </div>
         </div>
     </main>
-    <footer>
-    </footer>
+
+    <?= $this->Html->script([
+        '/plugins/jquery/jquery-3.7.1.min',
+        '/plugins/popper/popper.min',
+        '/plugins/bootstrap/js/bootstrap.min',
+        'custom',
+    ]); ?>
 </body>
 
 </html>

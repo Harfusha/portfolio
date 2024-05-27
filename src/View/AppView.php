@@ -37,5 +37,7 @@ class AppView extends UIView {
     #[\Override]
     public function initialize(): void {
         parent::initialize();
+
+        $this->setLayout('default');
     }
 }
